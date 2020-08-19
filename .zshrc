@@ -102,8 +102,8 @@ PROMPT="$fg[cyan]%}$USER@%{$fg[blue]%}%m ${PROMPT}"
 
 #set zsh mode to shell
 
-if ! type "$foobar_command_name" > /dev/null; then
+if ! type "$nvim" > /dev/null; then
   alias vim=nvim
+  export EDITOR='nvim'
 fi
 
-export EDITOR='vim'

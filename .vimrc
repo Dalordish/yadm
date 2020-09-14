@@ -4,6 +4,7 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
+Plugin 'preservim/nerdtree'
 "Plugin 'neoclide/coc.nvim'
 "Plugin 'liuchengxu/vim-which-key'       
 
@@ -52,7 +53,7 @@ set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
 
 " space open/closes folds
-nnoremap <space> za
+"nnoremap <space> za
 set foldmethod=syntax " set the way it folds to be syntax defined
 
 
@@ -60,7 +61,14 @@ set foldmethod=syntax " set the way it folds to be syntax defined
 nnoremap j gj
 nnoremap k gk
 
+"--------------plugin configs--------"
+"make nerdtree autoopen on empty vim 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"make nerdtree toggle on Space+F
+nnoremap <Leader>f :NERDTreeToggle<Enter>
 
+"
 " experimental
 "
 " sync with system clipboard instead
@@ -71,8 +79,10 @@ set clipboard=unnamedplus
 " remap esc
 inoremap jk <ESC>
 " set leader key
-let mapleader = " "
+nnoremap <SPACE> <Nop>
+"let mapleader = "\<Space>" 
+map <SPACE> <leader>
 
-
+"let mapleader = " "
 
 

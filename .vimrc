@@ -1,3 +1,11 @@
+"""
+" TODO: COC config
+" maybe setup whichvim
+" separate things out into multiple files because this is getting messy
+"
+"""
+
+
 "plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -5,7 +13,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'preservim/nerdtree'
-"Plugin 'neoclide/coc.nvim'
+Plugin 'neoclide/coc.nvim'
 "Plugin 'liuchengxu/vim-which-key'       
 
 call vundle#end()            " required

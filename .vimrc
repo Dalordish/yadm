@@ -9,6 +9,8 @@ set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4   " number of spaces in tab when editing
 set expandtab       " tabs are spaces
 
+"encoding
+set encoding=utf-8
 
 "ui
 set number              " show line numbers
@@ -24,7 +26,6 @@ set showmatch           " highlight matching [{()}]
 "searching
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
-
 
 "turn off highglihgting once done
 " turn off search highlight
@@ -44,5 +45,18 @@ set foldmethod=syntax " set the way it folds to be syntax defined
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+
+
+
+" experimental
+"
+" sync with system clipboard instead
+set clipoard=unnamedplus
+
+" remap esc
+inoremap jk <ESC>
+" set leader key
+let mapleader = " "
+
 
 

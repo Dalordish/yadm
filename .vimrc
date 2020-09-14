@@ -51,7 +51,7 @@ nnoremap k gk
 " experimental
 "
 " sync with system clipboard instead
-set clipoard=unnamedplus
+set clipboard = unnamedplus
 
 " remap esc
 inoremap jk <ESC>

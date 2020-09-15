@@ -14,6 +14,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'preservim/nerdtree'
 Plugin 'neoclide/coc.nvim'
+Plugin 'ajmwagar/vim-deus'
 "Plugin 'liuchengxu/vim-which-key'       
 
 call vundle#end()            " required
@@ -24,7 +25,7 @@ filetype plugin indent on    " required
 set nocompatible
 
 "colour
-colorscheme desert " awesome colorscheme
+"colorscheme desert " awesome colorscheme
 syntax enable           " enable syntax processing
 
 
@@ -65,18 +66,6 @@ set foldnestmax=10      " 10 nested fold max
 set foldmethod=syntax " set the way it folds to be syntax defined
 
 
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-
-"--------------plugin configs--------"
-"make nerdtree autoopen on empty vim 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"make nerdtree toggle on Space+F
-nnoremap <Leader>f :NERDTreeToggle<Enter>
-
-"
 " experimental
 "
 " sync with system clipboard instead
@@ -91,6 +80,56 @@ nnoremap <SPACE> <Nop>
 "let mapleader = "\<Space>" 
 map <SPACE> <leader>
 
-"let mapleader = " "
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+"--------------plugin configs--------"
+"make nerdtree autoopen on empty vim 
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"make nerdtree toggle on Space+F
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+"prettify nerdtree
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+"
 
 
+"-----------coc completion-------------
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+"coc completion, use tab
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+"dispaly docs in floating window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+"allow coc to show in statusline
+set statusline^=%{coc#status()}
+
+let g:coc_global_extensions = [
+                        \ 'coc-python',
+                        \ ]
